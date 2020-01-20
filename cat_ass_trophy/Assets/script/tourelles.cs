@@ -75,7 +75,14 @@ public class tourelles : MonoBehaviour
     void shoot()
     {
         //Debug.Log("SHOOT !!!!");
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGo =  (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bullet bullet = bulletGo.GetComponent<bullet>();
+
+        if(bullet != null)
+        {
+            bullet.seek(target);
+        }
+    
     }
 
     void onDrawGizmosSelected()
