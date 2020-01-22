@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tourelles : MonoBehaviour
+public class Tourelles : MonoBehaviour
 {
 
-    private Transform target;
+    [SerializeField] private Transform target;
 
     [Header("Attributes")]
 
     public float range = 15f;
 
-    
+
 
     public float fireRate = 1f;
     private float fireCountDown = 0f;
@@ -52,7 +52,7 @@ public class tourelles : MonoBehaviour
         {
             target = null;
         }
-    
+
     }
 
     // Update is called once per frame
@@ -65,8 +65,11 @@ public class tourelles : MonoBehaviour
 
         if (fireCountDown <= 0f)
         {
-            shoot();
-            fireCountDown = 1f / fireRate;
+            if (target != null)
+            {
+                shoot();
+                fireCountDown = 1f / fireRate;
+            }
         }
 
         fireCountDown -= Time.deltaTime;
@@ -75,19 +78,22 @@ public class tourelles : MonoBehaviour
     void shoot()
     {
         //Debug.Log("SHOOT !!!!");
-        GameObject bulletGo =  (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        bullet bullet = bulletGo.GetComponent<bullet>();
+        GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletGo.GetComponent<Bullet>();
 
-        if(bullet != null)
+        if (bullet != null)
         {
             bullet.seek(target);
         }
-    
+
     }
 
     void onDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+        if (target)
+            Gizmos.DrawLine(transform.position, target.position);
+
     }
 }

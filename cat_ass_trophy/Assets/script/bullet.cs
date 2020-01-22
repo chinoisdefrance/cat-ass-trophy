@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
 
     private Transform target;
@@ -23,7 +23,7 @@ public class bullet : MonoBehaviour
 
         Vector3 dir = target.position - transform.position;
 
-        float distanceThisFrame = speed = Time.deltaTime;
+        float distanceThisFrame = speed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {
@@ -38,6 +38,8 @@ public class bullet : MonoBehaviour
     void HitTarget()
     {
         //Debug.Log("TOUCHE !!!");
+
+        Destroy(target.gameObject);
 
         Destroy(gameObject);
     }

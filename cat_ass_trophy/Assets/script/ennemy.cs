@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ennemy : MonoBehaviour
+public class Ennemy : MonoBehaviour
 {
     public float speed = 10f;
     private Transform target;

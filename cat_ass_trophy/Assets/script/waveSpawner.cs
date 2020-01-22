@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class waveSpawner : MonoBehaviour
+public class WaveSpawner : MonoBehaviour
 {
     public Transform enemyPrefab;
 
@@ -21,7 +21,7 @@ public class waveSpawner : MonoBehaviour
         if (countdown <= 0f)
         {
             StartCoroutine(spawnWave());
-            spawnWave();
+            //spawnWave();
             countdown = timeBetweenWaves;
         }
 
@@ -31,7 +31,7 @@ public class waveSpawner : MonoBehaviour
 
     IEnumerator spawnWave ()
     {
-        Debug.Log("CAT ASTROPHE !!!");
+      //  Debug.Log("CAT ASTROPHE !!!");
 
         waveIndex++;
 
