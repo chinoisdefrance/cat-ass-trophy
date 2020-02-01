@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     private bool gameEnded = false;
 
+    public GameObject gameOverUI;
+
     void Update()
     {
         if (gameEnded)
@@ -23,7 +25,8 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         gameEnded = true;
-        Debug.Log("Game Over !");
+
+        gameOverUI.SetActive(true);
     }
 }
 
