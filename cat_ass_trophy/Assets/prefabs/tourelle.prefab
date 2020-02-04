@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2922420576722353154}
   - component: {fileID: 1797408023622388774}
   - component: {fileID: 5769406967128443133}
+  - component: {fileID: 896878770}
   m_Layer: 0
   m_Name: tourelle
   m_TagString: Untagged
@@ -95,6 +96,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &896878770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113008262629635433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a1259d94077fa4fa37f584cf64126d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  range: 15
+  fireRate: 1
+  ennemyTag: Enemy
+  bulletPrefab: {fileID: 761398522617148472, guid: 03092f456a4a3d54d90bee4efbf8062a,
+    type: 3}
+  firePoint: {fileID: 2625361113312217740}
 --- !u!1 &4421425396656724484
 GameObject:
   m_ObjectHideFlags: 0

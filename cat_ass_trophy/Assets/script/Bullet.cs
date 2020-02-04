@@ -7,18 +7,12 @@ public class Bullet : MonoBehaviour
 
     private Transform target;
     public float speed = 70f;
-   
-   
+
+
     public int damage = 50;
 
-    void Start()
-    {
-        target = waypoints.points[0];
-    }
 
-   
-
-    public void seek (Transform _target)
+    public void Seek(Transform _target)
     {
         target = _target;
     }
@@ -37,31 +31,21 @@ public class Bullet : MonoBehaviour
 
         if (dir.magnitude <= distanceThisFrame)
         {
-            HitTarget();
+            Damage(target);
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
 
     }
-    
+
     void Damage(Transform ennemy)
     {
-       Ennemy e = ennemy.GetComponent<Ennemy>();
-
+        Ennemy e = ennemy.GetComponent<Ennemy>();
         if (e != null)
         {
             e.TakeDamage(damage);
         }
-
-        
-    }
-
-    void HitTarget()
-    {
-        //Debug.Log("TOUCHE !!!");
-
-        Destroy(target.gameObject);
 
         Destroy(gameObject);
     }

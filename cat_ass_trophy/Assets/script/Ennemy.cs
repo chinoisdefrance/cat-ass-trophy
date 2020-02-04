@@ -1,23 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Ennemy : MonoBehaviour
 {
-    public float speed = 10f;
-    private Transform target;
-    private int wavepointIndex = 0;
-    public int health = 100;
+    //public float speed = 10f;
+    //private Transform target;
+    //private int wavepointIndex = 0;
+
+    public float startHealth = 100;
+    [SerializeField] private float health;
+
     public int value = 50;
 
+    [Header("Deplacement")]
+    public Transform destination;
+    public float destinationDistance = 1;
+    NavMeshAgent agent;
+
+    [Header("Unity stuff")]
+    public Image healthBar;
     void Start()
     {
-        target = waypoints.points[0];
+        //target = waypoints.points[0];
+        health = startHealth;
+
+
+        destination = GameObject.FindWithTag("Destination").transform;
+        agent = GetComponent<NavMeshAgent>();
+        agent.SetDestination(destination.position);
     }
 
-    public void TakeDamage(int amount)
+
+    void Update()
+    {
+        if (agent.remainingDistance <= destinationDistance)
+        {
+            Endpath();
+        }
+
+    }
+
+    public void TakeDamage(float amount)
     {
         health -= amount;
+
+
+        healthBar.fillAmount = health / startHealth;
+
         if (health <= 0)
         {
             Die();
@@ -28,32 +58,6 @@ public class Ennemy : MonoBehaviour
     {
         PlayerStats.Money += value;
         Destroy(gameObject);
-    }
-
-    void Update()
-    {
-        if (target)
-        {
-            Vector3 dir = target.position - transform.position;
-            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-            if (Vector3.Distance(transform.position, target.position) <= 0.2f)
-
-            {
-                GetNextWayPoint();
-            }
-        }
-    }
-
-    void GetNextWayPoint()
-    {
-        if (wavepointIndex >= waypoints.points.Length - 1)
-        {
-            Endpath();
-            return;
-        }
-        wavepointIndex++;
-        target = waypoints.points[wavepointIndex];
     }
 
     void Endpath()
