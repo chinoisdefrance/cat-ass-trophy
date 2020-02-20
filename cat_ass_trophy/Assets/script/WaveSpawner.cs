@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public Transform[] enemyPrefab;
 
     public Transform spawnPoint;
 
@@ -14,8 +14,9 @@ public class WaveSpawner : MonoBehaviour
 
     public Text waveCountDownText;
 
-    private int waveIndex = 0;
-
+   [SerializeField] private int waveIndex = 0;
+    public int waveMax = 5;
+    public UnityEvent waveEnd;
     void Update()
     {
         if (countdown <= 0f)
@@ -42,11 +43,14 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-       
+       if(waveIndex == waveMax)
+        {
+            waveEnd.Invoke();
+        }
     }
 
     void spawnEnnemy()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], spawnPoint.position, spawnPoint.rotation);
     }
 }

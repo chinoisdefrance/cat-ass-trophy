@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject ui;
+
+    //when "p" is pressed, the game pause
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
@@ -27,6 +29,16 @@ public class PauseMenu : MonoBehaviour
 
     public void Menu()
     {
-        Debug.Log("Menu");
+        SceneManager.LoadScene(0);
+    }
+
+    public void PauseTime()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -1,34 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-
-    public TurretBluePrint tourelle;
-    public TurretBluePrint tourelleAutre;
+    //here is every turrets and special attacks you can buy in the shop
+    public TurretBluePrint tourelleFish;
+    public TurretBluePrint tourelleWhool;
+    public TurretBluePrint tourellePillow;
+    public TurretBluePrint whoolYarn;
+    //public TurretBluePrint laser;
 
     BuildManager buildManager;
 
     void Start()
     {
         buildManager = BuildManager.instance;
+        tourelleFish.Init();
+        tourelleWhool.Init();
+        tourellePillow.Init();
+        whoolYarn.Init();
+        //laser.Init();
     }
 
+    //to select the standard turret
     public void SelectStandardTurret()
     {
-        Debug.Log("Achete ma merde !!");
-        buildManager.SelectTurretToBuild(tourelle);
+       
+        buildManager.SelectTurretToBuild(tourelleFish);
 
     }
 
-    public void PruchaseAnotherTurret()
+    //to buy other turrets and special attacks in the shop
+
+    public void PurchaseFish()
     {
-        Debug.Log("Achete mon autre merde");
-        buildManager.SelectTurretToBuild(tourelleAutre);
+        buildManager.SelectTurretToBuild(tourelleFish);
     }
-    public void PruchaseStandardTurret()
+    public void PurchaseWhool()
     {
-        buildManager.SelectTurretToBuild(tourelle);
+        buildManager.SelectTurretToBuild(tourelleWhool);
+    }
+
+    public void PurchasePillow()
+    {
+        buildManager.SelectTurretToBuild(tourellePillow);
+    }
+    public void PurchaseWhoolYarn()
+    {
+        buildManager.PlaceGodPower(whoolYarn);
     }
 }

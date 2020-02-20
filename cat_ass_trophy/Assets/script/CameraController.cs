@@ -84,7 +84,7 @@ public class CameraController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layers))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             if (hit.distance <= limiteZoom) toClose = true;
             if (hit.distance >= limiteDezoom) toFar = true;
         }

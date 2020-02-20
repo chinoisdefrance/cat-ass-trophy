@@ -7,6 +7,8 @@ TagManager:
   - enemy
   - Enemy
   - Destination
+  - Road
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - ParkingSlot
+  - Fat
   - 
   - 
   - 

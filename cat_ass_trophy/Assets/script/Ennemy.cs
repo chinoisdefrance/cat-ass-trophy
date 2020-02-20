@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.AI;
-
+[RequireComponent(typeof(AudioSource))]
 public class Ennemy : MonoBehaviour
 {
     //public float speed = 10f;
@@ -20,8 +20,18 @@ public class Ennemy : MonoBehaviour
 
     [Header("Unity stuff")]
     public Image healthBar;
+
+    [Header("Sound")]
+    public AudioClip spawn;
+    public AudioClip damage;
+    public AudioClip death;
+    AudioSource source;
     void Start()
     {
+        
+        source = GetComponent<AudioSource>();
+        source.clip = spawn;
+        source.Play();
         //target = waypoints.points[0];
         health = startHealth;
 
@@ -29,6 +39,7 @@ public class Ennemy : MonoBehaviour
         destination = GameObject.FindWithTag("Destination").transform;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(destination.position);
+        
     }
 
 
@@ -50,7 +61,14 @@ public class Ennemy : MonoBehaviour
 
         if (health <= 0)
         {
+            //source.clip = death;
+            source.PlayOneShot(death);
             Die();
+        }
+        else
+        {
+            source.clip = damage;
+            source.Play();
         }
     }
 
@@ -62,7 +80,8 @@ public class Ennemy : MonoBehaviour
 
     void Endpath()
     {
-        PlayerStats.Lives--;
+        
+        PlayerStats.DecreaseLive();
         Destroy(gameObject);
     }
 }

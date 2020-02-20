@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverUI;
 
+    public GameObject winUI;
+
     void Update()
     {
         if (gameEnded)

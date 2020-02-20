@@ -18,17 +18,18 @@ public class Tourelles : MonoBehaviour
 
     [Header("Unity Setup Fields")]
 
-    public string ennemyTag = "Enemy";
+    public const string ennemyTag = "Enemy";
 
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
+    //bullets target ennemies automatically
     void UpdateTarget()
     {
         GameObject[] ennemis = GameObject.FindGameObjectsWithTag(ennemyTag);
@@ -55,7 +56,7 @@ public class Tourelles : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    //time between bullets
     void Update()
     {
         if (target == null)
@@ -75,9 +76,10 @@ public class Tourelles : MonoBehaviour
         fireCountDown -= Time.deltaTime;
     }
 
+    //instanciate bullet
     void shoot()
     {
-        Debug.Log("SHOOT !!!!");
+        
         GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
@@ -88,12 +90,12 @@ public class Tourelles : MonoBehaviour
 
     }
 
-    void onDrawGizmosSelected()
+    /*void onDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
         if (target)
             Gizmos.DrawLine(transform.position, target.position);
 
-    }
+    }*/
 }

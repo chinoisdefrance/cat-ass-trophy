@@ -20,8 +20,10 @@ public class Sol : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
+        rend.enabled = false;
 
         buildManager = BuildManager.instance;
+
     }
 
     public Vector3 GetBuildPosition ()
@@ -29,6 +31,7 @@ public class Sol : MonoBehaviour
         return transform.position + positionOffSet;
     }
 
+    
     void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -43,17 +46,18 @@ public class Sol : MonoBehaviour
         }
 
         if (turret != null)
-        {
-            Debug.Log("Can build there! - TODO: Display on screen.");
+        {            
             return;
         }
-
 
         buildManager.BuildTurretOn(this);
     }
 
+    //to build turrets while the mouse is on the ground which turrets can be build, if the player don't have enough money he/she can't build turrets anymore
     void OnMouseEnter()
     {
+
+        rend.enabled = true;
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
@@ -78,6 +82,8 @@ public class Sol : MonoBehaviour
 
     void OnMouseExit()
     {
+        rend.enabled = false;
+
         rend.material.color = startColor;
     }
 }
