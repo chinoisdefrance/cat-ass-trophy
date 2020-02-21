@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
+    //bullets stats
     private Transform target;
     public float speed = 70f;
-
-
     public int damage = 50;
 
-
+    //bullets targets
     public void Seek(Transform _target)
     {
         target = _target;
     }
 
+    //bullet speed, they target ennemies
     void Update()
     {
         if (target == null)
@@ -39,6 +38,7 @@ public class Bullet : MonoBehaviour
 
     }
 
+    //bullets inflict damage and destroy themselves
     void Damage(Transform ennemy)
     {
         Ennemy e = ennemy.GetComponent<Ennemy>();

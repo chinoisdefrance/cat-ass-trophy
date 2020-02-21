@@ -8,6 +8,7 @@ public class BuildManager : MonoBehaviour
 
     public static BuildManager instance;
 
+    // singleton
     void Awake()
     {
         if (instance != null)
@@ -30,7 +31,9 @@ public class BuildManager : MonoBehaviour
 
 
     public bool CanBuild { get { return turretToBuild != null; } }
-    //public bool HasMoney { get { return turretToBuild != null; } }
+
+
+    //Player can build turret if he has enough money
     public bool HasMoney()
     {
         if (PlayerStats.Money - turretToBuild.cost >= 0)
@@ -41,36 +44,35 @@ public class BuildManager : MonoBehaviour
 
         return false;
     }
+
+    //if Player hasn't enough money to build turrets, he can't build them on the ground
     public void BuildTurretOn(Sol sol)
     {
         if (turretToBuild.isTurret == false) return;
-        
 
-            if (PlayerStats.Money < turretToBuild.cost)
-        {
-            Debug.Log("TU ES PAUVRE");
-            return;
-        }
 
+        if (PlayerStats.Money < turretToBuild.cost) return;
+
+
+        //when Player builds a turret, his money decreases
         PlayerStats.DecreaseMoney(turretToBuild.cost);
 
         GameObject turret = (GameObject)Instantiate(turretToBuild.prefabs, sol.GetBuildPosition(), sol.transform.rotation);
         sol.turret = turret;
-
-        Debug.Log("Turret build ! Money left : " + PlayerStats.Money);
     }
 
+    //wool yarns attack, wool yarns are instantiate
     internal void PlaceGodPower(TurretBluePrint obj)
     {
-
 
         godPowerPlacement = true;
         for (int i = 0; i < spawnsWhoolYarn.Length; i++)
         {
 
-           Instantiate(obj.prefabs, spawnsWhoolYarn[i].position,Quaternion.identity);
+            Instantiate(obj.prefabs, spawnsWhoolYarn[i].position, Quaternion.identity);
         }
     }
+
 
     public void SelectTurretToBuild(TurretBluePrint turret)
     {
@@ -82,42 +84,5 @@ public class BuildManager : MonoBehaviour
     }
 
 
-    //void Update()
-    //{
-    //    if (godPowerPlacement)
-    //    {
-    //        if (Input.GetMouseButtonDown(0))
-    //        {
 
-    //            var v3 = Input.mousePosition;
-    //            v3.z = 10f;
-    //            v3 = Camera.main.ScreenToWorldPoint(v3);
-    //            Instantiate(turretToBuild.prefabs, v3, Quaternion.identity);
-    //            //Transform cam = Camera.main.transform;
-    //            //RaycastHit hit;
-    //            //// Does the ray intersect any objects
-    //            //if (Physics.Raycast(cam.position, cam.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-    //            //{
-    //            //    Debug.DrawRay(cam.position, cam.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-
-
-
-    //            //    Debug.Log(hit.point);
-    //            //    if (HasMoney())
-    //            //    {
-    //            //        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-    //            //        //Debug.DrawRay(transform.position, hit.point, Color.red);
-
-
-    //            //        GameObject obj = Instantiate(turretToBuild.prefabs, cam.TransformDirection(Vector3.forward), Quaternion.identity);
-    //            //        obj.transform.Translate(0, 5, 0);
-
-    //            //        godPowerPlacement = false;
-    //            //        PlayerStats.Money -= turretToBuild.cost;
-    //            //    }
-    //            //}
-    //        }
-    //    }
-
-    //}
 }

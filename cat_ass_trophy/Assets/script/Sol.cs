@@ -16,6 +16,7 @@ public class Sol : MonoBehaviour
 
     BuildManager buildManager;
 
+    //colorswap on the ground when Player puts turrets on it
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -26,12 +27,13 @@ public class Sol : MonoBehaviour
 
     }
 
+    //turrets takes position when they are on the ground
     public Vector3 GetBuildPosition ()
     {
         return transform.position + positionOffSet;
     }
 
-    
+    //when the mouse is overhead on the ground which he can build turret, the color of the ground changes
     void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -52,8 +54,8 @@ public class Sol : MonoBehaviour
 
         buildManager.BuildTurretOn(this);
     }
-
-    //to build turrets while the mouse is on the ground which turrets can be build, if the player don't have enough money he/she can't build turrets anymore
+    
+    //to build turrets while the mouse is on the ground which turrets can be build, if the player don't have enough money he/she/it can't build turrets anymore and the groun color changes to red
     void OnMouseEnter()
     {
 
@@ -80,6 +82,7 @@ public class Sol : MonoBehaviour
         
     }
 
+    //hide ground
     void OnMouseExit()
     {
         rend.enabled = false;

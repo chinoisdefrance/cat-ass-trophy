@@ -1,17 +1,17 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
+
 [RequireComponent(typeof(AudioSource))]
 public class Ennemy : MonoBehaviour
 {
-    //public float speed = 10f;
-    //private Transform target;
-    //private int wavepointIndex = 0;
-
+    
     public float startHealth = 100;
     [SerializeField] private float health;
 
     public int value = 50;
+    public int damage = 1;
 
     [Header("Deplacement")]
     public Transform destination;
@@ -22,17 +22,18 @@ public class Ennemy : MonoBehaviour
     public Image healthBar;
 
     [Header("Sound")]
-    public AudioClip spawn;
-    public AudioClip damage;
-    public AudioClip death;
+    public AudioClip sndSpawn;
+    public AudioClip sndDamage;
+     public AudioClip sndDeath;
     AudioSource source;
+    
+    //ennemies sounds and the destination set
     void Start()
     {
         
         source = GetComponent<AudioSource>();
-        source.clip = spawn;
+        source.clip = sndSpawn;
         source.Play();
-        //target = waypoints.points[0];
         health = startHealth;
 
 
@@ -42,7 +43,7 @@ public class Ennemy : MonoBehaviour
         
     }
 
-
+    //ennemies have to reach this point
     void Update()
     {
         if (agent.remainingDistance <= destinationDistance)
@@ -52,6 +53,7 @@ public class Ennemy : MonoBehaviour
 
     }
 
+    //ennemy healthbar, they can take damages and die
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -62,26 +64,28 @@ public class Ennemy : MonoBehaviour
         if (health <= 0)
         {
             //source.clip = death;
-            source.PlayOneShot(death);
+            source.PlayOneShot(sndDeath);
             Die();
         }
         else
         {
-            source.clip = damage;
+            source.clip = sndDamage;
             source.Play();
         }
     }
 
+    //if the ennmies die, Player earns money and they are destroyed
     void Die()
     {
         PlayerStats.Money += value;
         Destroy(gameObject);
     }
 
+    //if ennemies reach the destination, they are destroyed and Player can lost more than one life (depends of ennemy type)
     void Endpath()
     {
-        
-        PlayerStats.DecreaseLive();
+
+        PlayerStats.DecreaseLive(damage);
         Destroy(gameObject);
     }
 }

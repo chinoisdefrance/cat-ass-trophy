@@ -16,6 +16,8 @@ public class WhooYarn : MonoBehaviour
     public AudioClip spawn;
     public AudioClip destroySomething;
     AudioSource source;
+    
+    //when object is spawned, sound is played and force is applied, ennemy is destroyed at the end of 10 seconds
     void Start()
     {
 
@@ -31,17 +33,19 @@ public class WhooYarn : MonoBehaviour
 
     }
 
+    //when a wool yarn from wool yarn attack touches a turret or/and an ennemy there are destroyed instantly 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.CompareTag("Turret") || collision.collider.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log(collision.collider.name);
+            //Debug.Log(collision.collider.name);
             Destroy(collision.collider.gameObject);
             source.clip = destroySomething;
             source.Play();
         }
     }
 
+    //object can be destroyed, if its position is above -10 or its velocity is equal to zero 
     void Update()
     {
         if (canDied)

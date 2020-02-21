@@ -17,12 +17,13 @@ public class WaveSpawner : MonoBehaviour
    [SerializeField] private int waveIndex = 0;
     public int waveMax = 5;
     public UnityEvent waveEnd;
+    
+    //show time counter 
     void Update()
     {
         if (countdown <= 0f)
         {
-            StartCoroutine(spawnWave());
-            //spawnWave();
+            StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
 
@@ -31,15 +32,15 @@ public class WaveSpawner : MonoBehaviour
         waveCountDownText.text = string.Format("{0:00.00}", countdown);
     }
 
-    IEnumerator spawnWave ()
+    //seconds during each ennemies spawning and numbers of waves
+    IEnumerator SpawnWave ()
     {
-      //  Debug.Log("CAT ASTROPHE !!!");
-
+      
         waveIndex++;
 
         for (int i = 0; i < waveIndex; i++)
         {
-            spawnEnnemy();
+            SpawnEnnemy();
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -49,7 +50,8 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    void spawnEnnemy()
+    //instantiate random ennemies at each wave
+    void SpawnEnnemy()
     {
         Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], spawnPoint.position, spawnPoint.rotation);
     }

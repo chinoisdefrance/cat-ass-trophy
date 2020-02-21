@@ -5,14 +5,11 @@ public class LivesUI : MonoBehaviour
 {
     public Text livesText;
 
-    // Update is called once per frame
+    //show Player's lives
     void Update()
     {
         livesText.text = PlayerStats.Lives.ToString() + " CARDBOARDS";
 
-        if (true)
-        {
-
-        }
+        
     }
 }

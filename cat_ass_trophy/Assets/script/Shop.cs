@@ -2,13 +2,12 @@
 
 public class Shop : MonoBehaviour
 {
-    //here is every turrets and special attacks you can buy in the shop
+    //here is every turrets and special attack you can buy in the shop
     public TurretBluePrint tourelleFish;
     public TurretBluePrint tourelleWhool;
     public TurretBluePrint tourellePillow;
     public TurretBluePrint whoolYarn;
-    //public TurretBluePrint laser;
-
+    
     BuildManager buildManager;
 
     void Start()
@@ -18,7 +17,7 @@ public class Shop : MonoBehaviour
         tourelleWhool.Init();
         tourellePillow.Init();
         whoolYarn.Init();
-        //laser.Init();
+        
     }
 
     //to select the standard turret
@@ -29,7 +28,7 @@ public class Shop : MonoBehaviour
 
     }
 
-    //to buy other turrets and special attacks in the shop
+    //to buy other turrets and special attack in the shop
 
     public void PurchaseFish()
     {

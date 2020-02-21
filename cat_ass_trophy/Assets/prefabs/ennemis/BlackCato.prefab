@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &6487689955285707632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585429441176098229}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!95 &1426906124626020032
 Animator:
   serializedVersion: 3
@@ -19,19 +32,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &6487689955285707632
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585429441176098229}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1001 &1642574122770134466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,11 +169,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4038664536566771958, guid: b2a2c7905bfd8c14aa3afb90eb886367,
-        type: 3}
-      propertyPath: m_Name
-      value: BlackCato
-      objectReference: {fileID: 0}
     - target: {fileID: 191445624, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 6.26
@@ -181,6 +176,11 @@ PrefabInstance:
     - target: {fileID: 191445624, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.029999733
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038664536566771958, guid: b2a2c7905bfd8c14aa3afb90eb886367,
+        type: 3}
+      propertyPath: m_Name
+      value: BlackCato
       objectReference: {fileID: 0}
     - target: {fileID: 93451096, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}
       propertyPath: value
@@ -194,16 +194,18 @@ PrefabInstance:
       propertyPath: death
       value: 
       objectReference: {fileID: 8300000, guid: 8affc7704797eb74eb87828368e1ba1f, type: 3}
-    - target: {fileID: 8548112593367213913, guid: b2a2c7905bfd8c14aa3afb90eb886367,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8962600838713843250, guid: b2a2c7905bfd8c14aa3afb90eb886367,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 93451096, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}
+      propertyPath: sndSpawn
+      value: 
+      objectReference: {fileID: 8300000, guid: 6456f0214856d3f47a14ecc81424bbca, type: 3}
+    - target: {fileID: 93451096, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}
+      propertyPath: sndDamage
+      value: 
+      objectReference: {fileID: 8300000, guid: e5d59e7e91a5b954ca8d185be2f46837, type: 3}
+    - target: {fileID: 93451096, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}
+      propertyPath: sndDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: 8affc7704797eb74eb87828368e1ba1f, type: 3}
     - target: {fileID: 6030698081733294582, guid: b2a2c7905bfd8c14aa3afb90eb886367,
         type: 3}
       propertyPath: m_Radius
@@ -218,6 +220,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BaseOffset
       value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962600838713843250, guid: b2a2c7905bfd8c14aa3afb90eb886367,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548112593367213913, guid: b2a2c7905bfd8c14aa3afb90eb886367,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a2c7905bfd8c14aa3afb90eb886367, type: 3}

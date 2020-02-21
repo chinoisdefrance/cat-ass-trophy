@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     public AudioClip cashMachine;
     public UnityEvent gameOver;
 
+    //Player's money and lives
     void Start()
     {
         instance = this;
@@ -24,7 +25,7 @@ public class PlayerStats : MonoBehaviour
         sndController = GetComponent<SoundController>();
     }
 
-
+    //when Player builds a turret, his money decreases and it makes a sound
     public static void DecreaseMoney(int cost)
     {
 
@@ -32,11 +33,12 @@ public class PlayerStats : MonoBehaviour
         PlayerStats.instance.sndController.PlaySound(PlayerStats.instance.cashMachine);
     }
 
-    public static void DecreaseLive()
+    //Player can lost lives, if his number of lives are equal or lower to zero it's Game Over, damage depends of ennemy type 
+    public static void DecreaseLive(int damage)
     {
-        PlayerStats.Lives--;
-        
-        if(PlayerStats.Lives <= 0)
+        PlayerStats.Lives -= damage;
+
+        if (PlayerStats.Lives <= 0)
             PlayerStats.instance.gameOver.Invoke();
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject winUI;
 
+    //at the end of the game, if Player Stats are lower or equal to zero, Game Over screen is loaded
     void Update()
     {
         if (gameEnded)
