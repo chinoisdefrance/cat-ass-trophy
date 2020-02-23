@@ -359,15 +359,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4fca9bae7387f4ba19feb9fbd98734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextEnnemiesPrefab: {fileID: 4420880838753335770, guid: bc41caca49e31a84fb5fc882f97ec658,
+    type: 3}
+  EnnemyTakesDamages: {r: 1, g: 0, b: 0, a: 1}
   startHealth: 100
   health: 0
   value: 50
+  damage: 1
   destination: {fileID: 0}
   destinationDistance: 1
   healthBar: {fileID: 1738576432}
-  spawn: {fileID: 8300000, guid: 6456f0214856d3f47a14ecc81424bbca, type: 3}
-  damage: {fileID: 8300000, guid: e5d59e7e91a5b954ca8d185be2f46837, type: 3}
-  death: {fileID: 8300000, guid: 8affc7704797eb74eb87828368e1ba1f, type: 3}
+  sndSpawn: {fileID: 0}
+  sndDamage: {fileID: 0}
+  sndDeath: {fileID: 0}
 --- !u!195 &6030698081733294582
 NavMeshAgent:
   m_ObjectHideFlags: 0

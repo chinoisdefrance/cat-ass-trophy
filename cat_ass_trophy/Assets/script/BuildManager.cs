@@ -56,14 +56,23 @@ public class BuildManager : MonoBehaviour
 
         //when Player builds a turret, his money decreases
         PlayerStats.DecreaseMoney(turretToBuild.cost);
-
-        GameObject turret = (GameObject)Instantiate(turretToBuild.prefabs, sol.GetBuildPosition(), sol.transform.rotation);
-        sol.turret = turret;
+        if (turretToBuild.prefabs != null)
+        {
+            GameObject turret = (GameObject)Instantiate(turretToBuild.prefabs, sol.GetBuildPosition(), sol.transform.rotation);
+            sol.turret = turret;
+        }
     }
 
     //wool yarns attack, wool yarns are instantiate
     internal void PlaceGodPower(TurretBluePrint obj)
     {
+
+        if (PlayerStats.Money < obj.cost) return;
+
+
+        //when Player builds a god power, his money decreases
+        PlayerStats.DecreaseMoney(obj.cost);
+
 
         godPowerPlacement = true;
         for (int i = 0; i < spawnsWhoolYarn.Length; i++)

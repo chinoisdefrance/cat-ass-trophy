@@ -16,6 +16,9 @@ public class PlayerStats : MonoBehaviour
     public AudioClip cashMachine;
     public UnityEvent gameOver;
 
+
+    public GameObject textDisplay;
+    public Transform parent;
     //Player's money and lives
     void Start()
     {
@@ -38,6 +41,14 @@ public class PlayerStats : MonoBehaviour
     {
         PlayerStats.Lives -= damage;
 
+        if (PlayerStats.instance.parent)
+        {
+            var go = Instantiate(
+                PlayerStats.instance.textDisplay, 
+                PlayerStats.instance.parent.position, 
+                Quaternion.Euler(0, -90, 0));
+            go.GetComponentInChildren<TextMesh>().text = damage.ToString();
+        }
         if (PlayerStats.Lives <= 0)
             PlayerStats.instance.gameOver.Invoke();
     }

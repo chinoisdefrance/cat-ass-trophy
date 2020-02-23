@@ -6,7 +6,12 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(AudioSource))]
 public class Ennemy : MonoBehaviour
 {
-    
+    public GameObject FloatingTextEnnemiesPrefab;
+
+    public Color EnnemyTakesDamages = Color.red;
+    private Renderer rend;
+    private Color startColor;
+
     public float startHealth = 100;
     [SerializeField] private float health;
 
@@ -24,23 +29,28 @@ public class Ennemy : MonoBehaviour
     [Header("Sound")]
     public AudioClip sndSpawn;
     public AudioClip sndDamage;
-     public AudioClip sndDeath;
+    public AudioClip sndDeath;
     AudioSource source;
-    
+
     //ennemies sounds and the destination set
     void Start()
     {
-        
+
         source = GetComponent<AudioSource>();
         source.clip = sndSpawn;
         source.Play();
         health = startHealth;
 
+        rend = GetComponent<Renderer>();
+        rend.enabled = false;
+        rend.material.color = startColor;
+        rend.material.color = Color.red;
+
 
         destination = GameObject.FindWithTag("Destination").transform;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(destination.position);
-        
+
     }
 
     //ennemies have to reach this point
@@ -57,13 +67,13 @@ public class Ennemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-
+        rend.enabled = true;
 
         healthBar.fillAmount = health / startHealth;
 
         if (health <= 0)
         {
-            //source.clip = death;
+
             source.PlayOneShot(sndDeath);
             Die();
         }
@@ -71,7 +81,21 @@ public class Ennemy : MonoBehaviour
         {
             source.clip = sndDamage;
             source.Play();
+            rend.material.color = EnnemyTakesDamages;
+
+
+            if (FloatingTextEnnemiesPrefab)
+            {
+                ShowFloatingTextEnnemies(amount);
+            }
         }
+    }
+
+    //instantiate floating text to show damages
+    void ShowFloatingTextEnnemies(float amount)
+    {
+        var go = Instantiate(FloatingTextEnnemiesPrefab, transform.position, Quaternion.Euler(0,-90,0)) ;
+        go.GetComponentInChildren<TextMesh>().text = amount.ToString();
     }
 
     //if the ennmies die, Player earns money and they are destroyed

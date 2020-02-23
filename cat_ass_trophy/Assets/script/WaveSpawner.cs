@@ -14,10 +14,10 @@ public class WaveSpawner : MonoBehaviour
 
     public Text waveCountDownText;
 
-   [SerializeField] private int waveIndex = 0;
+    [SerializeField] private int waveIndex = 0;
     public int waveMax = 5;
     public UnityEvent waveEnd;
-    
+
     //show time counter 
     void Update()
     {
@@ -33,21 +33,25 @@ public class WaveSpawner : MonoBehaviour
     }
 
     //seconds during each ennemies spawning and numbers of waves
-    IEnumerator SpawnWave ()
+    IEnumerator SpawnWave()
     {
-      
-        waveIndex++;
-
-        for (int i = 0; i < waveIndex; i++)
-        {
-            SpawnEnnemy();
-            yield return new WaitForSeconds(0.5f);
-        }
-
-       if(waveIndex == waveMax)
+        if (waveIndex > waveMax)
         {
             waveEnd.Invoke();
+            enabled = false;
         }
+        else
+        {
+
+            waveIndex++;
+
+            for (int i = 0; i < waveIndex; i++)
+            {
+                SpawnEnnemy();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
     }
 
     //instantiate random ennemies at each wave
